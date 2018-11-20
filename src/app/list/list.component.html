@@ -1,1 +1,26 @@
-<button (click)="add()">Add</button>
+<div class="container">
+  <form [formGroup]="todoForm" (ngSubmit)="addItem()" class="todo-form">
+    <div class="form-group">
+      <input formControlName="title" class="form-control" type="text" name="titleInput" placeholder="What needs to be done?" />
+    </div>
+
+    <div class="section-list">
+      <ul>
+        <li *ngFor="let item of items | async" (click)="onSelect(item)">
+          <input [checked]="item.isDone === true" formControlName="isDone" type="checkbox" />
+          <label>
+            {{ item.title }}
+          </label>
+        </li>
+      </ul>
+    </div>
+
+    <div class="section-event">
+      <button type="submit">Add</button>
+      <button (click)="updateItem()" color="primary" type="button">Update</button>
+      <button (click)="removeItem()" type="button" class="close">
+        Delete
+      </button>
+    </div>
+  </form>
+</div>
