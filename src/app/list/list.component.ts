@@ -33,7 +33,6 @@ export class ListComponent implements OnInit {
   public onSelect(item): void {
     this.selectItem = item;
     this.todoForm.get('title').setValue(this.selectItem.title);
-    console.log(item);
   }
 
   public addItem() {

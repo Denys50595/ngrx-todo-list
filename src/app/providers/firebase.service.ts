@@ -50,11 +50,7 @@ export class FirebaseService {
 
   public deleteTodo(id: string) {
     const collectinoRef = this.firestore.collection('/test-list');
-    return collectinoRef.doc(id)
-      .delete()
-      .then(() => console.log('Document successfully deleted!'))
-      .catch((error) => console.error("Error removing document: ", error));
+    return collectinoRef.doc(id).delete();
   }
-
 
 }

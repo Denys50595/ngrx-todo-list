@@ -15,6 +15,24 @@ export function reducer(state = initialState, action: todos.ListActions): State 
       return {
         ...state, todos: action.payload
       };
+    case todos.ListActionTypes.LoadFailure:
+      return {
+        ...state
+      };
+    case todos.ListActionTypes.Add:
+      return {
+        ...state, todos: [ action.payload ]
+      };
+    case todos.ListActionTypes.Edit:
+      return {
+        ...state, todos: [ action.payload ]
+      };
+    case todos.ListActionTypes.Remove:
+      return {
+        todos: state.todos.filter(item => {
+          return item.id !== action.id;
+        })
+      };
     default:
       return state;
   }
