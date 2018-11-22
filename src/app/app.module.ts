@@ -11,7 +11,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { EffectsModule } from '@ngrx/effects';
 import { ListEffects } from './effects/list.effects';
 import { StoreModule } from '@ngrx/store';
-import * as fromList from './reducers/list.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers';
 
 @NgModule({
@@ -26,6 +26,7 @@ import { reducers, metaReducers } from './reducers';
     AngularFireModule.initializeApp(environment.firebase),
     EffectsModule.forRoot([ListEffects]),
     StoreModule.forRoot(reducers, {metaReducers}),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent],
