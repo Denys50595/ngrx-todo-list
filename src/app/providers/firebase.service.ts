@@ -37,9 +37,10 @@ export class FirebaseService {
   public addTodo(todo: List) {
     const collectinoRef = this.firestore.collection('/test-list');
     return collectinoRef.add(todo).then(docRef => {
-      return docRef.update({
+      docRef.update({
         id: docRef.id
       });
+      return Object.assign(todo, { id: docRef.id });
     });
   }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { FirebaseService } from '../providers/firebase.service';
 import * as Todos from '../actions/list.actions';
-import { mergeMap, map, catchError, exhaustMap, switchMap } from 'rxjs/operators';
+import { mergeMap, map, catchError, exhaustMap, switchMap, tap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable()
@@ -10,13 +10,14 @@ export class ListEffects {
 
   @Effect()
   loadTodos$ = this.actions$.ofType(Todos.ListActionTypes.Load)
-    .pipe(mergeMap(() => {
-      return this.todoService.getTodoList()
-        .pipe(
-          map(res => new Todos.LoadSuccess(res)),
-          catchError(error => of(new Todos.LoadFailure(error)))
-        );
-    }));
+    .pipe(
+      mergeMap(() => {
+        return this.todoService.getTodoList()
+          .pipe(
+            map(res => new Todos.LoadSuccess(res)),
+            catchError(error => of(new Todos.LoadFailure(error)))
+          );
+      }));
 
   @Effect({ dispatch: false })
   loadFailure$ = this.actions$.ofType(Todos.ListActionTypes.LoadFailure)
@@ -28,13 +29,14 @@ export class ListEffects {
       })
     );
 
-  @Effect({ dispatch: false })
+  @Effect()
   addTodos$ = this.actions$.ofType(Todos.ListActionTypes.Add)
     .pipe(
       map((action: Todos.Add) => action.payload),
       exhaustMap(payload => {
-        this.todoService.addTodo(payload);
-        return of(null);
+        return this.todoService.addTodo(payload)
+          .then(res => new Todos.AddSuccess(res))
+          .catch(error => new Todos.AddFailure(error));
       })
     );
 

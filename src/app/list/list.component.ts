@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FirebaseService } from '../providers/firebase.service';
-import { Observable } from 'rxjs';
 import { List } from '../models/list';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers/index';
@@ -18,8 +16,8 @@ export class ListComponent implements OnInit {
   public selectItem: any;
 
   constructor(private store: Store<fromRoot.State>) {
-    this.items = this.store.select(fromRoot.getTodos)
-    this.store.dispatch(new todos.Load())
+    this.store.dispatch(new todos.Load());
+    this.items = this.store.select(fromRoot.getTodos);
   }
 
   ngOnInit() {
@@ -27,7 +25,6 @@ export class ListComponent implements OnInit {
       title: new FormControl(null, Validators.compose([Validators.required])),
       isDone: new FormControl(false)
     });
-    console.log(this.todoForm.value)
   }
 
   public onSelect(item): void {

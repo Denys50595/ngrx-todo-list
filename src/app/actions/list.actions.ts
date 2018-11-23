@@ -3,6 +3,8 @@ import { Action } from '@ngrx/store';
 export enum ListActionTypes {
   Load = '[List] Load',
   Add = '[List] Add',
+  AddSuccess = '[List] Add Success',
+  AddFailure = '[List] Add Failed',
   Remove = '[List] Remove',
   Edit = '[List] Edit',
   LoadSuccess = '[List] Load Success',
@@ -17,6 +19,18 @@ export class Add implements Action {
     readonly type = ListActionTypes.Add;
 
     constructor(public payload: any) {}
+}
+
+export class AddSuccess implements Action {
+    readonly type = ListActionTypes.AddSuccess;
+
+    constructor(public payload: any) {}
+}
+
+export class AddFailure implements Action {
+  readonly type = ListActionTypes.AddFailure;
+
+  constructor(public payload: any ) {}
 }
 
 export class Remove implements Action {
@@ -46,6 +60,8 @@ export class LoadFailure implements Action {
 
 export type ListActions = Load
   | Add
+  | AddSuccess
+  | AddFailure
   | Remove
   | Edit
   | LoadSuccess
