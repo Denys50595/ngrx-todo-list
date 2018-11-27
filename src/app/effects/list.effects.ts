@@ -14,6 +14,7 @@ export class ListEffects {
       mergeMap(() => {
         return this.todoService.getTodoList()
           .pipe(
+            take(1),
             map(res => new Todos.LoadSuccess(res)),
             catchError(error => of(new Todos.LoadFailure(error)))
           );

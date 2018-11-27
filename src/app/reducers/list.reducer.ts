@@ -10,7 +10,6 @@ const initialState: State = {
 };
 
 export function reducer(state = initialState, action: todos.ListActions): State {
-  console.log(action)
   switch (action.type) {
     case todos.ListActionTypes.LoadSuccess:
       return { ...state, todos: action.payload }
