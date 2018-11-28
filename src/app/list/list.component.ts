@@ -95,6 +95,7 @@ export class ListComponent implements OnInit {
       this.toastr.info('Please select the item to remove!');
     } else {
       this.store.dispatch(new todos.Remove(this.selectItem.id));
+      this.selectItem = null;
       this.todoForm.get('title').reset();
       this.toastr.success("Item successfully removed");
     }

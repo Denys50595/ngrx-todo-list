@@ -29,6 +29,7 @@
     "angularfire2": "^5.1.0",
     "core-js": "^2.5.4",
     "firebase": "^5.5.8",
+    "firebase-tools": "^6.1.1",
     "ngrx-store-logger": "^0.2.2",
     "ngx-toastr": "^9.1.1",
     "rxjs": "^6.0.0",

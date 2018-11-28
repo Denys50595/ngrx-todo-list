@@ -72,16 +72,18 @@ p {
 }
 
 .has-error {
-  border: 1px solid#e03838;
+  border: 1px solid;
+  border-color: #e03838 !important;
   border-radius: 2px;
 }
 
 .has-success {
-  border: 1px solid#77e038;
+  border: 1px solid;
+  border-color: #77e038 !important;
   border-radius: 2px;
 }
 
 input:focus{
-    outline: none;
+  outline: none;
 }
 
