@@ -10,6 +10,12 @@ Add your firebase project in environment.ts
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Redux devtools extension
+
+In case anyone is looking for temporary work around(for chrome), you can download https://github.com/zalmoxisus/redux-devtools-extension/releases/download/2.15.5/extension.zip and then extract it to some folder.
+
+Type chrome://extensions and turn on developer mode from top left and then click on Load Unpacked and select the extracted folder for use.
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
