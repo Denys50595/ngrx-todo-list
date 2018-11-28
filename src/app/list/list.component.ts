@@ -64,15 +64,15 @@ export class ListComponent implements OnInit {
   }
 
   public addItem() {
-    const data = {
-      title: this.todoForm.get('title').value,
-      isDone: false
-    }
     if (!this.todoForm.valid) {
       Object.keys(this.formControls).forEach(key => {
         this.todoForm.get(key).markAsDirty();
       });
     } else {
+      const data = {
+        title: this.todoForm.get('title').value,
+        isDone: false
+      }
       this.store.dispatch(new todos.Add(data));
       this.todoForm.get('title').reset();
       this.toastr.success("Item successfully added");
